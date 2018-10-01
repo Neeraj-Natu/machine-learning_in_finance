@@ -1,0 +1,1 @@
+# The paper mentions to prepare the data from S&P 500 although we would use Quandl to get our data.
