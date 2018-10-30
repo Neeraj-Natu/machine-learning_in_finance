@@ -38,9 +38,9 @@ def main(unused_argv):
     ##Using the GPU
     with tf.device('/device:GPU:0'):
         ##Loading the data
-        train_data = pd.read_csv("..\data\Train_data.csv").values  # Returns np.array
+        train_data = pd.read_csv("..\data\Train_data_scaled.csv").values  # Returns np.array
         train_labels = pd.read_csv("..\data\Train_labels.csv").values # Returns np.array
-        eval_data = pd.read_csv("..\data\Validation_data.csv").values  # Returns np.array
+        eval_data = pd.read_csv("..\data\Validation_data_scaled.csv").values  # Returns np.array
         eval_labels = pd.read_csv("..\data\Validation_labels.csv").values # Returns np.array
 
         ##Pre processing the data
@@ -53,7 +53,7 @@ def main(unused_argv):
         Model = model(train_data.shape[1:]);
 
         ## Compling the model
-        Model.compile(optimizer = "Adam" , loss = "binary_crossentropy", metrics = ["accuracy"]);
+        Model.compile(optimizer = "Adam" , loss = "mean_squared_logarithmic_error", metrics = ["mae","acc"]);
 
         ## Printing the modle summary
         Model.summary()
@@ -62,7 +62,7 @@ def main(unused_argv):
         tensorboard = callbacks.TensorBoard(log_dir='./Graph', histogram_freq=0, write_graph=True, write_images=True);
 
         ##fitting the model
-        Model.fit(x = train_data, y = train_labels, epochs = 20, batch_size=100, callbacks=[tensorboard], validation_data=(eval_data,eval_labels) );
+        Model.fit(x = train_data, y = train_labels, epochs = 300, batch_size=100, callbacks=[tensorboard], validation_data=(eval_data,eval_labels) );
 
 ##Running the app
 if __name__ == "__main__":
