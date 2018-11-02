@@ -15,7 +15,7 @@ def model(input_shape):
     X_input = Input(input_shape)
 
     ## Dense Layer 1
-    X = Dense(15, activation='relu', name = 'dense_1')(X_input)
+    X = Dense(10, activation='relu', name = 'dense_1')(X_input)
 
     ## Dense layer 2
     X = Dense(10, activation='relu', name = 'dense_2')(X)
@@ -23,8 +23,8 @@ def model(input_shape):
     ## Dense layer 3
     X = Dense(5, activation='relu', name = 'dense_3')(X)
 
-    ##dense 2 layer
-    X = Dense(2, activation='relu', name ='dense_4')(X)
+    ## Debse layer 4
+    X = Dense(1, activation='relu', name ='dense_4')(X)
 
     ##The model object
     model = Model(inputs = X_input, outputs = X, name='finModel')
@@ -37,23 +37,17 @@ def main(unused_argv):
 
     ##Using the GPU
     with tf.device('/device:GPU:0'):
-        ##Loading the data
+        ##Loading the data, this is incorrect way, read these are numpy array or else this clips the first row everytime.
         train_data = pd.read_csv("..\data\Train_data_scaled.csv").values  # Returns np.array
         train_labels = pd.read_csv("..\data\Train_labels.csv").values # Returns np.array
         eval_data = pd.read_csv("..\data\Validation_data_scaled.csv").values  # Returns np.array
         eval_labels = pd.read_csv("..\data\Validation_labels.csv").values # Returns np.array
 
-        ##Pre processing the data
-        #train_labels = keras.utils.np_utils.to_categorical(train_labels, 10)
-        #eval_labels = keras.utils.np_utils.to_categorical(eval_labels, 10)
-        #train_data = np.reshape(train_data, [-1, 28, 28, 1])
-        #eval_data = np.reshape(eval_data, [-1,28,28,1])
-
         ## Initializing the model
         Model = model(train_data.shape[1:]);
 
         ## Compling the model
-        Model.compile(optimizer = "Adam" , loss = "mean_squared_logarithmic_error", metrics = ["mae","acc"]);
+        Model.compile(optimizer = "Adam" , loss = "mean_squared_logarithmic_error", metrics = ["mse","acc"]);
 
         ## Printing the modle summary
         Model.summary()
@@ -62,8 +56,13 @@ def main(unused_argv):
         tensorboard = callbacks.TensorBoard(log_dir='./Graph', histogram_freq=0, write_graph=True, write_images=True);
 
         ##fitting the model
-        Model.fit(x = train_data, y = train_labels, epochs = 300, batch_size=100, callbacks=[tensorboard], validation_data=(eval_data,eval_labels) );
+        Hist =  Model.fit(x = train_data, y = train_labels, epochs = 300, batch_size=100, callbacks=[tensorboard], validation_data=(eval_data,eval_labels) );
 
+        ##Evaluating the model
+        score = Model.evaluate(eval_data, eval_labels, batch_size=100);
+
+        ## Saving the model
+        Model.save('.\model\stock_prediction.h5');
 ##Running the app
 if __name__ == "__main__":
   tf.app.run()
