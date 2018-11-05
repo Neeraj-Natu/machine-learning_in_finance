@@ -38,16 +38,16 @@ def main(unused_argv):
     ##Using the GPU
     with tf.device('/device:GPU:0'):
         ##Loading the data, this is incorrect way, read these are numpy array or else this clips the first row everytime.
-        train_data = pd.read_csv("..\data\Train_data_scaled.csv").values  # Returns np.array
-        train_labels = pd.read_csv("..\data\Train_labels.csv").values # Returns np.array
-        eval_data = pd.read_csv("..\data\Validation_data_scaled.csv").values  # Returns np.array
-        eval_labels = pd.read_csv("..\data\Validation_labels.csv").values # Returns np.array
+        train_data = np.genfromtxt("..\data\Train_data_scaled.csv" , delimiter=",")  # Returns np.array
+        train_labels = np.genfromtxt("..\data\Train_labels_scaled.csv" , delimiter=",") # Returns np.array
+        eval_data = np.genfromtxt("..\data\Validation_data_scaled.csv" , delimiter=",")  # Returns np.array
+        eval_labels = np.genfromtxt("..\data\Validation_labels_scaled.csv" , delimiter=",") # Returns np.array
 
         ## Initializing the model
         Model = model(train_data.shape[1:]);
 
         ## Compling the model
-        Model.compile(optimizer = "Adam" , loss = "mean_squared_logarithmic_error", metrics = ["mse","acc"]);
+        Model.compile(optimizer = "Adam" , loss = "mean_squared_logarithmic_error", metrics = ['mean_squared_error']);
 
         ## Printing the modle summary
         Model.summary()
