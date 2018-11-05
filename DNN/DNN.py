@@ -47,7 +47,7 @@ def main(unused_argv):
         Model = model(train_data.shape[1:]);
 
         ## Compling the model
-        Model.compile(optimizer = "Adam" , loss = "mean_squared_logarithmic_error", metrics = ['mean_squared_error']);
+        Model.compile(optimizer = "Adam" , loss = "mean_squared_logarithmic_error", metrics = ['mean_squared_error','cosine', 'mae']);
 
         ## Printing the modle summary
         Model.summary()
