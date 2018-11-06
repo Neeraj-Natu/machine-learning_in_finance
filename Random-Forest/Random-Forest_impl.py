@@ -8,7 +8,6 @@ import pandas as pd
 # Load numpy
 import numpy as np
 
-
 train_data = np.genfromtxt("..\data\Train_data_scaled.csv" , delimiter=",")  # Returns np.array
 train_labels = np.genfromtxt("..\data\Train_labels_scaled.csv" , delimiter=",") # Returns np.array
 
