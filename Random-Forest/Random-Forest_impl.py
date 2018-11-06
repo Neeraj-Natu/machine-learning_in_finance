@@ -1,10 +1,8 @@
 # Load scikit's random forest classifier library
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.externals import joblib
-
 # Load pandas
 import pandas as pd
-
 # Load numpy
 import numpy as np
 
