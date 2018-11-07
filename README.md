@@ -1,16 +1,41 @@
 ## Machine Learning in Finance
-Stock market prediction is one of the most fancied dreams and many people earn a good living being good at it.
-In this code i would attempt at stock prediction 10 days in advance for Apple.
-To collect the data we use alpha vantage which is a reliable and a rich source for historical data.
-Also we use 5 technical factors that are most used in the real world by traders for trading in short term.
-If future i would try to fundamentals and sentiment data into the analysis and would check how well the models perform with additional data.
 
-Currently we have 20 years data from 1998 till 2018.
-The data prepration is one of the most difficult step for any machine learning project thus i have done it using a jupyter notebook to be interactive and easy to follow.
+Predicting the future has always been one of the fancied dreams.
+In this repository i try to predict the value of stock 10 days into future based on some popular technical analysis parameters.
+The data is collected from Alpha Vantage APIs. The historical data is collected for past 20 years. (1998 till 2018).
+And the stock for which the prices are predicted is "AAPL"
 
+The technical indicators used are ADX, RSI, SMA, MACD along with time series data that includes daily high, low, close, adjusted close,dividend and split cofficient.
 
-To predict the stocks 10 days in future we would use a simple deep neural network, a Random Forest, a Gradient Boosted Tree and a LSTM network and see which one of these gives the better performance.
+There are a total of 4 different models used namely Deep neural Network, Light-GBM, Random-Forest and LSTM for training on same data and their performace is measured on the test data the metric used is R2 score for all the models to be consistent.
 
-Also once we have the best model, we will use zipline and backtrader popular backtesting libraries to perform backtesting and see how much our best model would have made us using these libraries for just one stock.
+The data prepration and Comparing of the models have been done using jupyter notebooks so that these processes are self explanatory and each step is explained in detail.
 
+```
+The repository structure is as:
+machine-learning_in_finance
+-data
+-DNN
+--DNN.py (the DNN model)
+--model 
+---stock-prediction.h5 (The saved DNN model after training)
+--Graph (Folder for tensor board graphs).
+-lightgbm
+--model
+---stock_prediction.txt (The saved lightgbm model after training)
+--lightgbm.py (the lightgbm model)
+-lstm
+--lstm.py (the lstm model)
+--model
+---stock-prediction.h5 (The saved LSTM model after training)
+--Graph (Folder for tensor board graphs)
+-Random-Forest
+--model
+---stock_prediction.sav (The saved Random-Forest model after training)
+--Random-Forest.py (the Random Forest model)
+-Utils
+--Data-prep.ipynb (The data prep notebook)
+--Stock_Prediction_Model.ipynb (The final prediction and model comparision notebook)
+
+```
 
