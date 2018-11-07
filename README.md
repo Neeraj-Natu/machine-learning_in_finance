@@ -6,19 +6,19 @@ The data is collected from Alpha Vantage APIs. The historical data is collected 
 And the stock for which the prices are predicted is **_"AAPL"_**
 
 The technical indicators used are :
-..* ADX 
-..* RSI
-..* SMA 
-..* MACD 
+  - ADX
+  - RSI
+  - SMA
+  - MACD
 
 Along with time series data that includes the daily :
 
-..* high 
-..* low 
-..* close 
-..* adjusted close
-..* dividend 
-..* split cofficient.
+  - high
+  - low
+  - close
+  - adjusted close
+  - dividend
+  - split cofficient
 
 There are a total of 4 different models used namely **Deep neural Network**, **Light-GBM**, **Random-Forest** and **LSTM** for training on same data and their performace is measured on the test data the metric used is R2 score for all the models to be consistent.
 
