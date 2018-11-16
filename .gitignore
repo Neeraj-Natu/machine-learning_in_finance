@@ -1,4 +1,8 @@
 Utils/.ipynb_*
-DNN/Graph
-DNN/model
+dnn/Graph
+dnn/model
+randomforest/model
+lstm/model
+lstm/Graph
+lightgbm/model
 predictions/*

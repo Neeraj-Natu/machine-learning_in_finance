@@ -1,6 +1,6 @@
 # Load scikit's random forest classifier library
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.externals import joblib
+import pickle
 # Load pandas
 import pandas as pd
 # Load numpy
@@ -12,5 +12,4 @@ train_labels = np.genfromtxt("..\data\Train_labels_scaled.csv" , delimiter=",") 
 model = RandomForestRegressor(n_estimators=250, max_depth=10);
 model.fit(train_data, train_labels);
 
-
-joblib.dump(model, '.\model\stock_prediction.sav');
+pickle.dump( model , open( ".\model\stock_prediction.p", "wb" ) );
