@@ -38,10 +38,10 @@ def main(unused_argv):
     ##Using the GPU
     with tf.device('/device:GPU:0'):
         ##Loading the data, this is incorrect way, read these are numpy array or else this clips the first row everytime.
-        train_data = np.genfromtxt("..\data\Train_data_scaled.csv" , delimiter=",")  # Returns np.array
-        train_labels = np.genfromtxt("..\data\Train_labels_scaled.csv" , delimiter=",") # Returns np.array
-        eval_data = np.genfromtxt("..\data\Validation_data_scaled.csv" , delimiter=",")  # Returns np.array
-        eval_labels = np.genfromtxt("..\data\Validation_labels_scaled.csv" , delimiter=",") # Returns np.array
+        X_train = np.genfromtxt("..\data\X_Train_scaled.csv" , delimiter=",")  # Returns np.array
+        Y_train = np.genfromtxt("..\data\Y_Train_scaled.csv" , delimiter=",") # Returns np.array
+        X_eval = np.genfromtxt("..\data\X_Validation_scaled.csv" , delimiter=",")  # Returns np.array
+        Y_eval = np.genfromtxt("..\data\Y_Validation_scaled.csv" , delimiter=",") # Returns np.array
 
         ## Initializing the model
         Model = model(train_data.shape[1:]);
@@ -56,13 +56,13 @@ def main(unused_argv):
         tensorboard = callbacks.TensorBoard(log_dir='./Graph', histogram_freq=0, write_graph=True, write_images=True);
 
         ##fitting the model
-        Hist =  Model.fit(x = train_data, y = train_labels, epochs = 300, batch_size=100, callbacks=[tensorboard], validation_data=(eval_data,eval_labels) );
+        Hist =  Model.fit(x = X_train, y = Y_train, epochs = 300, batch_size=100, callbacks=[tensorboard], validation_data=(X_eval,Y_eval) );
 
         ##Evaluating the model
-        score = Model.evaluate(eval_data, eval_labels, batch_size=100);
+        score = Model.evaluate(X_eval, Y_eval, batch_size=100);
 
         ## Saving the model
-        Model.save('.\model\stock_prediction.h5');
+        Model.save('../dnn/model/stock_prediction.h5');
 ##Running the app
 if __name__ == "__main__":
   tf.app.run()

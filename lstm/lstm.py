@@ -69,7 +69,7 @@ def main (unused_argv):
         score = Model.evaluate(X_eval, Y_eval, batch_size=10);
 
         ## Saving the model
-        Model.save('.\model\stock_prediction.h5');
+        Model.save('../lstm/model/stock_prediction.h5');
 ##Running the app
 if __name__ == "__main__":
   tf.app.run()

@@ -6,10 +6,10 @@ import pandas as pd
 # Load numpy
 import numpy as np
 
-train_data = np.genfromtxt("..\data\Train_data_scaled.csv" , delimiter=",")  # Returns np.array
-train_labels = np.genfromtxt("..\data\Train_labels_scaled.csv" , delimiter=",") # Returns np.array
+X_train = np.genfromtxt("..\data\X_Train_scaled.csv" , delimiter=",")  # Returns np.array
+Y_train = np.genfromtxt("..\data\Y_Train_scaled.csv" , delimiter=",") # Returns np.array
 
 model = RandomForestRegressor(n_estimators=250, max_depth=10);
-model.fit(train_data, train_labels);
+model.fit(X_train, Y_train);
 
-pickle.dump( model , open( ".\model\stock_prediction.p", "wb" ) );
+pickle.dump( model , open( "../randomforest/model/stock_prediction.p", "wb" ) );
