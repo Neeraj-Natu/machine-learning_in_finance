@@ -49,7 +49,7 @@ def main (unused_argv):
         Model = model(X_train.shape[1:]);
 
         ## Compling the model
-        Model.compile(optimizer = "Adam" , loss = "mean_squared_logarithmic_error", metrics = ['mean_squared_error','cosine', 'mae']);
+        Model.compile(optimizer = "Adam" , loss = "mean_absolute_error", metrics = ['mean_squared_error','cosine', 'mae']);
 
         ## Printing the model summary
         Model.summary()
