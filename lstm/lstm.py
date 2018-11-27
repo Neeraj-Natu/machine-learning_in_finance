@@ -21,17 +21,12 @@ def model(input_shape):
 
 
     ## Second LSTM Layer
-    X = LSTM(10, name = 'LSTM_2', return_sequences=True)(X);
+    X = LSTM(5, name = 'LSTM_2', return_sequences=True)(X);
     
     #X = Flatten() (X)
-    ## First Dense Layer
-    X = Dense(10, activation='relu', name = 'dense_1')(X)
+    ##Dense Layer
+    X = Dense(1, activation='relu', name = 'dense_1')(X)
 
-    ## Second Dense Layer
-    X = Dense(5, activation='relu', name = 'dense_2')(X)
-
-    ## Final Dense Layer
-    X = Dense(1, activation='relu', name = 'dense_3')(X)
 
     ##The model object
     model = Model(inputs = X_input, outputs = X, name='LSTMModel')
@@ -56,7 +51,7 @@ def main (unused_argv):
         ## Compling the model
         Model.compile(optimizer = "Adam" , loss = "mean_squared_logarithmic_error", metrics = ['mean_squared_error','cosine', 'mae']);
 
-        ## Printing the modle summary
+        ## Printing the model summary
         Model.summary()
 
         ## Adding the callback for TensorBoard
