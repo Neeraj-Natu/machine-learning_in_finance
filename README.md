@@ -24,16 +24,18 @@ To run the jupyter notebook please go to utils folder and start the jupyter note
 below are the commands to do so:
 
 For Windows users
-
 Open command prompt
+
 `cd .\utils`
+
 `python jupyter notebook`
 
 For Mac users 
-
 Open terminal and cd to the location of repository
 
+
 `cd ./utils`
+
 `python jupyter notebook`
 
 
