@@ -18,7 +18,7 @@ Along with time series data that includes the daily :
 
 There are a total of 4 different models used namely **Deep neural Network**, **Light-GBM**, **Random-Forest** and **LSTM** for training on same data and their performace is measured on the test data the metric used is R2 score for all the models to be consistent.
 
-The repository is meant to be followed along with this blog.
+The repository is meant to be followed along with this (https://medium.com/@natu.neeraj/exploring-machine-learning-in-finance-fe1c7ab45ca5 "blog.")
 
 To run the jupyter notebook please go to utils folder and start the jupyter notebook.
 below are the commands to do so:
